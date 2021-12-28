@@ -24,15 +24,21 @@ class _HomeScreenState extends State<HomeScreen> {
       target: LatLng(37.43296265331129, -122.08832357078792),
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
+  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: const Text('To the lake!'),
-        icon: const Icon(Icons.directions_boat),
+      key: _scaffoldkey,
+      floatingActionButton: FloatingActionButton(
+        elevation: 0,
+        backgroundColor: Theme.of(context).primaryColor,
+        onPressed: () {
+          _scaffoldkey.currentState!.openDrawer();
+        },
+        child: const Icon(Icons.menu),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       drawer: const DrawerWidget(),
       body: Stack(
         children: [
@@ -43,11 +49,11 @@ class _HomeScreenState extends State<HomeScreen> {
               _controller.complete(controller);
             },
           ),
-
         ],
       ),
     );
   }
+
   Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));

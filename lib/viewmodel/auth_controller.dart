@@ -10,6 +10,7 @@ String? uid;
 
 
 class AuthController extends GetxController {
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final userRef = FirebaseFirestore.instance.collection('user');
   final GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();

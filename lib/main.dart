@@ -2,9 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:garaj/is_logged_in.dart';
 import 'package:garaj/utils/translation.dart';
-import 'package:garaj/view/screen/home_screen.dart';
-import 'package:garaj/view/screen/login_screen.dart';
-import 'package:garaj/viewmodel/auth_controller.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,7 +10,6 @@ var appLanguage = 'ar';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
-
   SharedPreferences prefs = await SharedPreferences.getInstance();
   if (prefs.containsKey('lang')) {
     appLanguage = prefs.getString('lang')!;

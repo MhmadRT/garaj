@@ -67,7 +67,6 @@ class Customs {
 
   void showHint(String title, message) {
     HapticFeedback.mediumImpact();
-
     Get.snackbar(title, '$message',
         icon: Icon(
           Icons.info,
